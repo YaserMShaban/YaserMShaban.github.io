@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: black;
+      height: 100%;
+      position: relative;
+    }
+    img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+      width: 400px;
+      height: 300px;
+      background-size: cover;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      filter: brightness(80%);
+    }
+    @keyframes gradient {
+      0% {
+        background: black;
+      }
+      100% {
+        background: linear-gradient(90deg, #3f87a6, #ebf8e1, #f69d3c);
+      }
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <img id = "button-image" src = "button.png" onclick="changeImage()">
+
+  <script>
+  
+const delay = (delayInms) => {
+  return new Promise(resolve => setTimeout(resolve, delayInms));
+}
+  
+  
+    async function changeImage() {
+      buttonImage2 = document.getElementById("button-image").src= "button2.png";;
+	  var buttonImage = $("#button-image");
+	  await delay(500);
+      buttonImage.fadeOut(200, function() {
+        setTimeout(function() {
+          document.body.style.animation = "gradient 0.5s ease-in";
+          document.body.style.animationFillMode = "forwards";
+        }, 500);
+      });
+    }
+  </script>
+</body>
+</html>
