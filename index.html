@@ -7,18 +7,14 @@
       height: 100%;
       position: relative;
     }
-    img {
+
+	
+    .center {
     position: fixed;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-      width: 400px;
-      height: 300px;
-      background-size: cover;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
+	  color : white;
     }
     button:hover {
       filter: brightness(80%);
@@ -31,12 +27,58 @@
         background: linear-gradient(90deg, #3f87a6, #ebf8e1, #f69d3c);
       }
     }
+		
+		.bounce{
+		  animation: bounce 2s infinite;
+		}
+		
+.BottomLeft {
+cursor:pointer;
+
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none; 
+            user-select: none; 
+
+
+
+    position: fixed;
+    top: 90%;
+    left: 90%;
+	transform: translate(-50%, -50%);
+
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(60%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+	
+	
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<h1 class = "center"> Inside the box </h1>
 
-  <img id = "button-image" src = "button.png" onclick="changeImage()">
+
+  <!--<img id = "button-image" src = "button.png" onclick="changeImage()">-->
+  <div class = "BottomLeft" onclick = "changeImage()">
+  <div class = "bounce">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z " fill="white" stroke="white"/>
+</svg>
+</div>
+<h4 style="color:white;" > Go outside the box </h4>
+</div>
+
+<div id= "button-image"></div>
 
   <script>
   
@@ -46,7 +88,7 @@ const delay = (delayInms) => {
   
   
     async function changeImage() {
-      buttonImage2 = document.getElementById("button-image").src= "button2.png";;
+     // buttonImage2 = document.getElementById("button-image").src= "button2.png";;
 	  var buttonImage = $("#button-image");
 	  await delay(500);
       buttonImage.fadeOut(200, function() {
