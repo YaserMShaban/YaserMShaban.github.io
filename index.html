@@ -2,11 +2,17 @@
 <html>
   <head>
     <style>
-
-html{ font : 62.5%; }
-.textInTheCenter{font-size : 2rem;}
-
-
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font: 62.5%;
+      }
+      .textInTheCenter {
+        font-size: 2rem;
+      }
 
       body {
         background-color: black;
@@ -15,11 +21,16 @@ html{ font : 62.5%; }
       }
 
       .center {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         color: white;
+        font-size: calc(2rem + 1.5vh);
+      }
+
+      .flex--centering {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
       }
 
       button:hover {
@@ -50,15 +61,14 @@ html{ font : 62.5%; }
         -ms-user-select: none;
         user-select: none;
         position: fixed;
-        top: 90%;
-        left: 90%;
-        transform: translate(-50%, -50%);
+        bottom: 5%;
+        right: 5%;
       }
 
-      .outtext{
-        color:white;
+      .outtext {
+        color: white;
         /* font-size : 2rem; */
-        font-size:calc(2rem + 1.5vw);
+        font-size: calc(2rem + 1.5vw);
       }
 
       @keyframes bounce {
@@ -82,28 +92,38 @@ html{ font : 62.5%; }
   </head>
   <body>
     <div id="BOX">
-      <h1 class="center"> Inside the box </h1>
+      <div class="flex--centering">
+        <h1 class="center">Inside the box</h1>
+      </div>
       <div class="BottomLeft" onclick="changeImage()">
         <div class="bounce">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z " fill="white" stroke="white" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z "
+              fill="white"
+              stroke="white"
+            />
           </svg>
         </div>
-        <h4  class="outtext"> Go outside the box </h4>
+        <h4 class="center">Go outside the box</h4>
       </div>
     </div>
     <div id="button-image"></div>
     <script>
-
       const delay = (delayInms) => {
-        return new Promise(resolve => setTimeout(resolve, delayInms));
-      }
+        return new Promise((resolve) => setTimeout(resolve, delayInms));
+      };
 
       async function changeImage() {
         var boxbody = $("#BOX");
         await delay(500);
-        boxbody.fadeOut(200, function() {
-          setTimeout(function() {
+        boxbody.fadeOut(200, function () {
+          setTimeout(function () {
             document.body.style.animation = "gradient 0.5s ease-in";
             document.body.style.animationFillMode = "forwards";
           }, 500);
