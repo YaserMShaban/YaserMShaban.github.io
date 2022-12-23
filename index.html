@@ -1,167 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BOX</title>
     <style>
       * {
-        margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-      body {
-        background-color: #000;
-        overflow-x: hidden;
-        overflow-y: hidden;
-      }
       html {
-        font-size: 62.5%;
+        font: 62.5%;
       }
-      .box {
-        width: 100%;
+      .textInTheCenter {
+        font-size: 2rem;
+      }
+
+      body {
+        background-color: black;
+        height: 100%;
+        position: relative;
+      }
+
+      .animate{
+        animation: gradient 0.5s ease-in;
+        animation-fill-mode: forwards;
+      }
+
+
+      .center {
+        color: white;
+        font-size: calc(2rem + 1.5vh);
+      }
+
+      .flex--centering {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 100%;
       }
 
-      .box__inner {
-        width: 50%;
-        height: 50%;
-        color: #fff;
-        display: flex;
-        font-size: calc(1.5rem + 1.5vw);
-        justify-content: center;
-        align-items: center;
+      button:hover {
+        filter: brightness(80%);
       }
 
-      .colorsBackground {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: calc(100vh + 100vw);
-        height: calc(100vh + 100vw);
 
-        background: rgb(131, 58, 180);
-        background: -moz-linear-gradient(
-          90deg,
-          rgba(131, 58, 180, 1) 0%,
-          rgba(253, 29, 29, 1) 50%,
-          rgba(252, 176, 69, 1) 100%
-        );
-        background: -webkit-linear-gradient(
-          90deg,
-          rgba(131, 58, 180, 1) 0%,
-          rgba(253, 29, 29, 1) 50%,
-          rgba(252, 176, 69, 1) 100%
-        );
-        background: linear-gradient(
-          90deg,
-          rgba(131, 58, 180, 1) 0%,
-          rgba(253, 29, 29, 1) 50%,
-          rgba(252, 176, 69, 1) 100%
-        );
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833ab4",endColorstr="#fcb045",GradientType=1);
+:root{
+  --color1: #3f87a6;
+  --color2: #ebf8e1;
+  --color3: #f69d3c;
+  --color4: #abd70c;
+  --color5: #e02424;
 
-        z-index: -1;
-        transition-delay: 1s;
-        transition: 1s all ease-in-out;
-        animation: rolling 3s infinite linear;
-        transform: scale(2);
+  --deg:217deg;
+  --deg2:127deg;
+  --deg3:336deg;
+}
+
+
+      @keyframes gradient {
+        0% {
+          background: black;
+        }
+
+        100% {
+          background-repeat: none;
+           background: linear-gradient(var(--deg),rgba(255, 0, 0, 1),rgba(255, 0, 0, 0) 70.71%
+    ), linear-gradient(var(--deg2), rgba(0, 255, 0, 1), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(var(--deg3), rgba(0, 0, 255, 1), rgba(0, 0, 255, 0) 60%);
+           
+           
+           /* linear-gradient(0.1turn, #3f87a6, #ebf8e1, #f69d3c),
+            linear-gradient(0.4turn, #abd70c, #ebf8e1, #e02424); */
+        }
       }
 
-      .box__right {
-        position: absolute;
-        bottom: 2%;
-        right: 2%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
+
+
+
+
+      .bounce {
+        animation: bounce 2s infinite;
       }
 
-      .arrow {
-        width: 0;
-        height: 0;
-        border-left: 2rem solid transparent;
-        border-right: 2rem solid transparent;
-        border-top: 2rem solid #fff;
-        animation: arrow 1s infinite;
+      .BottomLeft {
         cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
       }
 
-      .text {
-        color: #fff;
-        font-size: calc(1.5rem + 1.5vw);
-
-        margin-top: 2rem;
-        font-family: "Courier New", Courier, monospace;
-        cursor: pointer;
+      .outtext {
+        color: white;
+        /* font-size : 2rem; */
+        font-size: calc(2rem + 1.5vw);
       }
 
-      @keyframes arrow {
-        0% {
-          transform: translateY(0);
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(60%);
         }
+
         50% {
-          transform: translateY(1rem);
-        }
-        100% {
-          transform: translateY(0);
+          transform: translateX(100%);
         }
       }
 
-      .box:hover .colorsBackground {
-        opacity: 1;
+      .fadeout {
+        animation: fadeout 0.5s ease-in;
+        animation-fill-mode: forwards;
+        pointer-events: none;
       }
 
-      @keyframes text {
+
+
+      @keyframes fadeout {
         0% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(1rem);
+          opacity: 1;
         }
         100% {
-          transform: translateY(0);
+          opacity: 0;
         }
       }
 
-      @keyframes rolling {
-        0% {
-          rotate: 0;
-        }
-        100% {
-          rotate: 360deg;
+
+      @media (any-pointer: coarse) {
+        .BottomLeft {
+          cursor: none;
         }
       }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
-    <div class="colorsBackground"></div>
-    <div class="box">
-      <div class="box__inner">
-        <h1>inside the <br />box</h1>
+    <div id="BOX">
+      <div class="flex--centering">
+        <h1 class="center">Inside the box</h1>
       </div>
-
-      <!-- in the bottom right corner another box with 2 elemnts the first is an arrow animated pointing to the right and a text says somthing -->
-      <div class="box__right">
-        <div class="arrow" onclick="changeColors()"></div>
-        <div class="text" onclick="changeColors()">OUTSIDE THE BOX</div>
+      <div class="BottomLeft" onclick="changeImage()">
+        <div class="bounce">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z "
+              fill="white"
+              stroke="white"
+            />
+          </svg>
+        </div>
+        <h4 class="center">Go outside the box</h4>
       </div>
     </div>
-
+    <div id="button-image"></div>
     <script>
-      function changeColors() {
-        document.body.style.backgroundColor = "#fff";
-        document.querySelector(".box__inner").style.opacity = 0;
-        document.querySelector(".box__right").style.display = "none";
-        document.querySelector(".colorsBackground").style.opacity = 1;
+      const delay = (delayInms) => {
+        return new Promise((resolve) => setTimeout(resolve, delayInms));
+      };
+
+      async function changeImage() {
+        var box = document.getElementById("BOX");
+        box.classList.add("fadeout");
+        await delay(500);
+        document.body.classList.add("animate");        
       }
+
+      var r = document.querySelector(':root');
+      var rs = getComputedStyle(r);
+
+      function ChangeRoot(){
+        
+        var deg = rs.getPropertyValue('--deg');
+        var deg2 = rs.getPropertyValue('--deg2');
+        var deg3 = rs.getPropertyValue('--deg3');
+        deg = deg.substring(0, deg.length - 3);
+        deg = parseInt(deg);
+        deg += 1;
+        deg%=360;
+
+        deg2 = deg2.substring(0, deg2.length - 3);
+        deg2 = parseInt(deg2);
+        deg2 += 2;
+        deg2%=360;
+
+        deg3 = deg3.substring(0, deg3.length - 3);
+        deg3 = parseInt(deg3);
+        deg3 += 1;
+        deg3%=360;
+
+
+
+        deg = deg.toString() + 'deg';
+        deg2 = deg2.toString() + 'deg';
+        deg3 = deg3.toString() + 'deg';
+
+
+        r.style.setProperty('--deg', deg);
+        r.style.setProperty('--deg2', deg2);
+        r.style.setProperty('--deg3', deg3);
+
+
+
+        // var deg = document.documentElement.style.getPropertyValue('--deg');
+
+        // document.documentElement.style.setProperty('--deg', deg + 'deg');
+      }
+
+       setInterval(ChangeRoot, 5);
+
+
     </script>
   </body>
 </html>
